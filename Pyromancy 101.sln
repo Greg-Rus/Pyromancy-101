@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2015
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pyromancy 101.CSharp.Plugins", "Pyromancy 101.CSharp.Plugins.csproj", "{00B53B91-BB50-7046-EF48-0D98C3645692}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pyromancy 101.CSharp", "Pyromancy 101.CSharp.csproj", "{D70B78C6-CC84-B6EC-E879-2EFBD545BEAB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pyromancy 101.CSharp.Editor", "Pyromancy 101.CSharp.Editor.csproj", "{75BA44A9-A1EF-3482-CEDB-D4DE0DDDA3AC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{00B53B91-BB50-7046-EF48-0D98C3645692}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00B53B91-BB50-7046-EF48-0D98C3645692}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00B53B91-BB50-7046-EF48-0D98C3645692}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00B53B91-BB50-7046-EF48-0D98C3645692}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D70B78C6-CC84-B6EC-E879-2EFBD545BEAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D70B78C6-CC84-B6EC-E879-2EFBD545BEAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D70B78C6-CC84-B6EC-E879-2EFBD545BEAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D70B78C6-CC84-B6EC-E879-2EFBD545BEAB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{75BA44A9-A1EF-3482-CEDB-D4DE0DDDA3AC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{75BA44A9-A1EF-3482-CEDB-D4DE0DDDA3AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{75BA44A9-A1EF-3482-CEDB-D4DE0DDDA3AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{75BA44A9-A1EF-3482-CEDB-D4DE0DDDA3AC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
