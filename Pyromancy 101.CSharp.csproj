@@ -116,6 +116,7 @@
     <Compile Include="Assets\AssetStore\vr cartoon hand\scripts\handanimations.cs" />
     <Compile Include="Assets\Scripts\FireBoltChargeController.cs" />
     <Compile Include="Assets\Scripts\HandController.cs" />
+    <Compile Include="Assets\Scripts\HandCoordinator.cs" />
     <Compile Include="Assets\Scripts\ProjectileSpellHit.cs" />
     <Compile Include="Assets\Scripts\SkeletonController.cs" />
     <Compile Include="Assets\SteamVR\Extras\SteamVR_GazeTracker.cs" />

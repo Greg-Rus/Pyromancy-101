@@ -15,9 +15,9 @@ public class ProjectileSpellHit : MonoBehaviour {
         myRigidbody = GetComponent<Rigidbody>();
     }
 
-    void Start()
+    void Update()
     {
-        PlayFlameCastSound();
+        sphere.transform.Rotate(Vector3.up, 1f);
     }
 
     void OnCollisionEnter(Collision collision)
@@ -25,9 +25,19 @@ public class ProjectileSpellHit : MonoBehaviour {
         GameObject instance = Instantiate(hitEffect, transform.position, Quaternion.LookRotation(collision.contacts[0].normal, transform.up)) as GameObject;
         PlayFlameHitSound();
         myRigidbody.isKinematic = true;
-        sphere.GetComponent<MeshRenderer>().enabled = false;
+        //sphere.GetComponent<MeshRenderer>().enabled = false;
+        sphere.SetActive(false);
         Destroy(instance, 2f);
         Destroy(this.gameObject,2);
+    }
+
+    public void Cast(Vector3 velocity)
+    {
+        transform.SetParent(null);
+        PlayFlameCastSound();
+        myRigidbody.isKinematic = false;
+        sphere.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+        StartCoroutine(ApplyVelocityInNextFixedUpdate(velocity));
     }
 
     void PlayFlameCastSound()
@@ -44,5 +54,11 @@ public class ProjectileSpellHit : MonoBehaviour {
     {
         int soundIndex = UnityEngine.Random.Range(0, sounds.Length);
         myAudio.PlayOneShot(sounds[soundIndex]);
+    }
+
+    IEnumerator ApplyVelocityInNextFixedUpdate(Vector3 velocity)
+    {
+        yield return new WaitForFixedUpdate();
+        myRigidbody.velocity = velocity;
     }
 }

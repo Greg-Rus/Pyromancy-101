@@ -10,14 +10,16 @@ public class HandController : MonoBehaviour {
     GameObject fireboltChargeInstance;
     GameObject projectileInstance;
     bool charged = false;
-    public FireBoltChargeController chargeController;
+    public FireBoltChargeController chargeParticleController;
     Vector3 lastHandPosition;
 
+    public HandCoordinator myCoordinator;
 
     public float spellCharge;
     public float stageOneCharge = 1f;
+    public float stageTwoCharge = 2.5f;
     public GameObject fireBolt;
-    public GameObject fireBoltCharge;
+    public ParticleSystem fireBoltCharge;
     public Transform focusPoint;
     public float throwForceMultiplyer = 3f;
 
@@ -39,61 +41,80 @@ public class HandController : MonoBehaviour {
         device = SteamVR_Controller.Input((int)trackedObject.index);
         if (device.GetTouchDown(SteamVR_Controller.ButtonMask.Trigger))
         {
-            handAnimator.PlayAnimation(HandAnimations.GrabLarge);
-            fireboltChargeInstance = Instantiate(fireBoltCharge, focusPoint.transform.position, Quaternion.identity) as GameObject;
-            fireboltChargeInstance.transform.SetParent(focusPoint);
-            chargeController = fireboltChargeInstance.GetComponent<FireBoltChargeController>();
-            lastHandPosition = transform.position;
+            StartSpellCharge();
         }
 
         if (device.GetTouch(SteamVR_Controller.ButtonMask.Trigger))
         {
-            spellCharge += (lastHandPosition - transform.position).magnitude;
-            lastHandPosition = transform.position;
-            if (spellCharge < stageOneCharge && !charged)
-            {
-                float strength = (spellCharge / stageOneCharge);
-                chargeController.ScaleChargeEffect(strength);
-
-            }
-            if(spellCharge >= stageOneCharge && !charged)
-            {
-                StartCoroutine(LongVibration(0.5f, 0.5f));
-                charged = true;
-                Destroy(fireboltChargeInstance);
-                projectileInstance = Instantiate(fireBolt, focusPoint.transform.position, Quaternion.identity) as GameObject;
-                projectileInstance.transform.SetParent(focusPoint.transform);
-            }
+            UpdateCharge();
+            CheckChargeStage();
         }
 
         if (device.GetTouchUp(SteamVR_Controller.ButtonMask.Trigger))
         {
-            if (charged)
-            {
-                handAnimator.PlayAnimation(HandAnimations.Spread);
-                handAnimator.PlayAnimationAfterSeconds(HandAnimations.Idle, 0.5f);
-                chargeController = null;
-                CastFireBolt();
-                spellCharge = 0;
-                charged = false;
-            }
-            else
-            {
-                handAnimator.PlayAnimation(HandAnimations.Idle);
-                Destroy(fireboltChargeInstance, 0.2f);
-                chargeController = null;
-                spellCharge = 0;
-            }
+            ReleaseCharge();
+           
             
+        }
+    }
+
+    void StartSpellCharge()
+    {
+        handAnimator.PlayAnimation(HandAnimations.GrabLarge);
+        chargeParticleController.StartCharge();
+    }
+
+    void UpdateCharge()
+    {
+        spellCharge += (lastHandPosition - transform.position).magnitude;
+        lastHandPosition = transform.position;
+    }
+
+    void CheckChargeStage()
+    {
+        if (spellCharge < stageOneCharge && !charged)
+        {
+            float strength = (spellCharge / stageOneCharge);
+            chargeParticleController.ScaleChargeEffect(strength);
+        }
+        if (spellCharge >= stageOneCharge && !charged)
+        {
+            charged = true;
+            chargeParticleController.StopCharge();
+            StartCoroutine(LongVibration(0.2f, 0.3f));
+            SpawnSpell();
+        }
+    }
+
+    void SpawnSpell()
+    {
+        projectileInstance = Instantiate(fireBolt, focusPoint.transform.position, Quaternion.identity) as GameObject;
+        projectileInstance.transform.SetParent(focusPoint.transform);
+    }
+
+    void ReleaseCharge()
+    {
+        if (charged)
+        {
+            handAnimator.PlayAnimation(HandAnimations.Spread);
+            handAnimator.PlayAnimationAfterSeconds(HandAnimations.Idle, 0.5f);
+            chargeParticleController.StopCharge();
+            CastFireBolt();
+            spellCharge = 0;
+            charged = false;
+        }
+        else
+        {
+            handAnimator.PlayAnimation(HandAnimations.Idle);
+            chargeParticleController.StopCharge();
+            spellCharge = 0;
         }
     }
 
     void CastFireBolt()
     {
-        projectileInstance.transform.SetParent(null);
-        Rigidbody projectileRigidbody = projectileInstance.GetComponentInChildren<Rigidbody>();
-        projectileRigidbody.isKinematic = false;
-        StartCoroutine(CastRigidbodySpell(projectileRigidbody));
+        Vector3 worldVelocity = parent.TransformVector(device.velocity);
+        projectileInstance.GetComponent<ProjectileSpellHit>().Cast(worldVelocity * throwForceMultiplyer);
     }
 
     IEnumerator LongVibration(float length, float strength)
@@ -103,14 +124,6 @@ public class HandController : MonoBehaviour {
             SteamVR_Controller.Input((int)device.index).TriggerHapticPulse((ushort)Mathf.Lerp(0, 3999, strength));
             yield return null;
         }
-    }
-    IEnumerator CastRigidbodySpell(Rigidbody rigidbody)
-    {
-        yield return new WaitForFixedUpdate();
-        Vector3 worldVelocity = parent.TransformVector(device.velocity);
-        rigidbody.velocity = worldVelocity * throwForceMultiplyer;
-
-        
     }
 
 }
