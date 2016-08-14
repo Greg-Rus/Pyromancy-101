@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class FireChargeStageOne : MonoBehaviour, ISpellCharging
+public class FireChargeStageZero : MonoBehaviour, ISpellCharging
 {
     public ParticleSystem coreEffect;
     public ParticleSystem sparks;

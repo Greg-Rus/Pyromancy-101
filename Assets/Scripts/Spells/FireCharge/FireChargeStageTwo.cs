@@ -13,6 +13,7 @@ public class FireChargeStageTwo : MonoBehaviour, ISpellCharging
     {
         coreEffect.Play();
         sparks.Play();
+        blaze.Play();
         trail.Play();
     }
 
@@ -25,6 +26,7 @@ public class FireChargeStageTwo : MonoBehaviour, ISpellCharging
     {
         coreEffect.Stop();
         sparks.Stop();
+        blaze.Stop();
         trail.Stop();
     }
 }

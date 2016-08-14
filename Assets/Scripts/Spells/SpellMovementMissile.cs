@@ -16,7 +16,7 @@ public class SpellMovementMissile : MonoBehaviour, ISpellMovement {
 
     void FixedUpdate()
     {
-        myRigidbody.AddForce(velocity * speed);
+       
         if (Time.timeSinceLevelLoad > deadline)
         {
             Destroy(gameObject);
@@ -28,6 +28,7 @@ public class SpellMovementMissile : MonoBehaviour, ISpellMovement {
     {
         velocity = worldVelocity.normalized;
         deadline = Time.timeSinceLevelLoad + maxLifeTime;
-        //myRigidbody.rotation.SetLookRotation(worldVelocity, Vector3.up);
+        myRigidbody.rotation.SetLookRotation(worldVelocity, Vector3.up);
+        myRigidbody.AddForce(velocity.normalized * speed, ForceMode.Impulse);
     }
 }

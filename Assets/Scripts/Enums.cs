@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public enum SpellCharge {None, FireOne, FireTwo, FireMax }
+public enum SpellCharge {FireZero, FireOne, FireTwo, FireThree }
 
 

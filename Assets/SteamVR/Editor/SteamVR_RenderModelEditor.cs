@@ -51,7 +51,7 @@ public class SteamVR_RenderModelEditor : Editor
 	static string[] LoadRenderModelNames()
 	{
 		var results = new List<string>();
-		results.Add("None");
+		results.Add("FireZero");
 
 		using (var holder = new SteamVR_RenderModel.RenderModelInterfaceHolder())
 		{
