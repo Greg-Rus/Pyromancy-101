@@ -10,7 +10,6 @@ public class FireChargeStageThree : MonoBehaviour, ISpellCharging
 
     public void StartCharge()
     {
-        Debug.Log("3 Started");
         coreEffect.Play();
         blaze.Play();
         //sparks.Play();

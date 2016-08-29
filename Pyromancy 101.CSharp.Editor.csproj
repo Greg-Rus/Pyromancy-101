@@ -210,6 +210,7 @@
     <None Include="Assets\AssetStore\Realistic Effects Pack\Shaders\Rim.shader" />
     <None Include="Assets\AssetStore\Realistic Effects Pack\Shaders\Water.shader" />
     <None Include="Assets\AssetStore\Realistic Effects Pack\Shaders\WaterFree.shader" />
+    <None Include="Assets\Dark bones skeletons\Shader\skeleton_mat.shader" />
     <None Include="Assets\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />
     <None Include="Assets\Standard Assets\Effects\GlassRefraction\Shaders\GlassStainedBumpDistort.shader" />
     <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\BlendModesOverlay.shader" />

@@ -18,6 +18,7 @@ public class SkeletonController : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
+        Debug.Log("Hit");
         myAnimator.SetTrigger("Hit");
     }
 

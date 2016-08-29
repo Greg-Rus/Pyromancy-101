@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
 
 [RequireComponent(typeof(SteamVR_TrackedObject))]
@@ -23,9 +24,12 @@ public class HandController : MonoBehaviour {
     public LayerMask aimAssistLayers;
 
     // Use this for initialization
-    void Awake () {
-        parent = deviceHandler.GetParentTransform();
+    void Awake () { 
         handAnimator = GetComponentInChildren<handanimations>();
+    }
+    void Start()
+    {
+        parent = deviceHandler.GetParentTransform();
         spellChargeController.OnSpellCharge += SpellChargeReached;
     }
 	
@@ -51,6 +55,10 @@ public class HandController : MonoBehaviour {
         {
             ReleaseCharge();
         }
+        if (device.GetTouchDown(SteamVR_Controller.ButtonMask.ApplicationMenu))
+        {
+            SceneManager.LoadScene(0);
+        }
     }
 
     void StartSpellCharge()
@@ -65,9 +73,8 @@ public class HandController : MonoBehaviour {
 
     void UpdateCharge()
     {
-        lineRenderer.SetPosition(0, head.transform.position);
-        lineRenderer.SetPosition(1, head.transform.position + head.transform.forward * 100f);
-        //Debug.DrawRay(head.transform.position, head.transform.forward * 100f);
+        //lineRenderer.SetPosition(0, head.transform.position);
+        //lineRenderer.SetPosition(1, head.transform.position + head.transform.forward * 100f);
         spellChargeController.ChargeSpell((lastHandPosition - transform.position).magnitude);
         lastHandPosition = transform.position;        
     }

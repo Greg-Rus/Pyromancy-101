@@ -117,7 +117,9 @@
     <Compile Include="Assets\Scripts\HandControlls\HandController.cs" />
     <Compile Include="Assets\Scripts\HandControlls\HandCoordinator.cs" />
     <Compile Include="Assets\Scripts\Interfaces.cs" />
+    <Compile Include="Assets\Scripts\NPCs\DBSkeletonController.cs" />
     <Compile Include="Assets\Scripts\NPCs\HeadLookController.cs" />
+    <Compile Include="Assets\Scripts\NPCs\SkeletonMotion.cs" />
     <Compile Include="Assets\Scripts\Old\FireBoltChargeController.cs" />
     <Compile Include="Assets\Scripts\Old\ProjectileSpellController.cs" />
     <Compile Include="Assets\Scripts\Old\ProjectileSpellHit.cs" />
@@ -243,6 +245,7 @@
     <None Include="Assets\AssetStore\Realistic Effects Pack\Shaders\Rim.shader" />
     <None Include="Assets\AssetStore\Realistic Effects Pack\Shaders\Water.shader" />
     <None Include="Assets\AssetStore\Realistic Effects Pack\Shaders\WaterFree.shader" />
+    <None Include="Assets\Dark bones skeletons\Shader\skeleton_mat.shader" />
     <None Include="Assets\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />
     <None Include="Assets\Standard Assets\Effects\GlassRefraction\Shaders\GlassStainedBumpDistort.shader" />
     <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\BlendModesOverlay.shader" />
