@@ -116,6 +116,7 @@
     <Compile Include="Assets\Scripts\HandControlls\ControllerDeviceHandler.cs" />
     <Compile Include="Assets\Scripts\HandControlls\HandController.cs" />
     <Compile Include="Assets\Scripts\HandControlls\HandCoordinator.cs" />
+    <Compile Include="Assets\Scripts\HandControlls\ParticleAtractor.cs" />
     <Compile Include="Assets\Scripts\Interfaces.cs" />
     <Compile Include="Assets\Scripts\NPCs\DBSkeletonController.cs" />
     <Compile Include="Assets\Scripts\NPCs\HeadLookController.cs" />

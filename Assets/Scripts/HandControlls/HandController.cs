@@ -19,7 +19,7 @@ public class HandController : MonoBehaviour {
     public SpellChargeController spellChargeController;
     public ControllerDeviceHandler deviceHandler;
     public SpellCastController spellCastController;
-    public LineRenderer lineRenderer;
+    //public LineRenderer lineRenderer;
     public Transform head;
     public LayerMask aimAssistLayers;
 
